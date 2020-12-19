@@ -4,7 +4,8 @@ ThisBuild / scalaVersion := "2.13.4"
 
 lazy val core = (project in file("core"))
   .settings {
-    name := "registravka-core"
+    name                 := "registravka-core"
+    libraryDependencies ++= Deps.avro4s
   }
 
 lazy val akka = (project in file("akka"))
