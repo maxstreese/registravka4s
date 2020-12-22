@@ -4,18 +4,18 @@ ThisBuild / scalaVersion := "2.13.4"
 
 lazy val core = (project in file("core"))
   .settings {
-    name                 := "registravka-core"
+    name                 := "registravka4s-core"
     libraryDependencies ++= Deps.avro4s ++ Deps.kafka
   }
 
 lazy val akka = (project in file("akka"))
   .dependsOn(core)
   .settings {
-    name := "registravka-akka"
+    name := "registravka4s-akka"
   }
 
 lazy val streams = (project in file("streams"))
   .dependsOn(core)
   .settings {
-    name := "registravka-streams"
+    name := "registravka4s-streams"
   }
