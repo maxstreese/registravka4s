@@ -13,6 +13,7 @@ lazy val akka = (project in file("akka"))
   .dependsOn(core)
   .settings {
     name := "registravka4s-akka"
+    libraryDependencies ++= Deps.akka
   }
 
 lazy val streams = (project in file("streams"))
