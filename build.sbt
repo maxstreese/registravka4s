@@ -15,3 +15,13 @@ lazy val akka = (project in file("akka"))
     name := "registravka4s-akka"
     libraryDependencies ++= Deps.akka
   }
+
+lazy val docs = (project in file("mdoc"))
+  .settings {
+    mdocOut := (ThisBuild / baseDirectory).value / "dummy"
+    mdocVariables := Map(
+      "VERSION" -> version.value
+    )
+  }
+  .dependsOn(core, akka)
+  .enablePlugins(MdocPlugin)
