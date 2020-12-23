@@ -44,13 +44,13 @@ trait Serdes {
 
   implicit def keyAvroSerdeGeneric[T >: Null](
     implicit
-    config: Config,
+    config: AvroSerdeConfig,
     recordFormat: RecordFormat[T]
   ): KeySerde[T] = kafkaSerde(genericAvroSerde(config, forKey = true), recordFormat).asInstanceOf[KeySerde[T]]
 
   implicit def valueAvroSerdeGeneric[T >: Null](
     implicit
-    config: Config,
+    config: AvroSerdeConfig,
     recordFormat: RecordFormat[T]
   ): ValueSerde[T] = kafkaSerde(genericAvroSerde(config, forKey = false), recordFormat).asInstanceOf[ValueSerde[T]] 
 
@@ -74,7 +74,7 @@ trait Serdes {
     )
   }
 
-  private def genericAvroSerde(config: Config, forKey: Boolean): GenericAvroSerde = {
+  private def genericAvroSerde(config: AvroSerdeConfig, forKey: Boolean): GenericAvroSerde = {
     val serde = new GenericAvroSerde()
     serde.configure(config.toMap.asJava, forKey)
     serde

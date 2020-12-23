@@ -6,7 +6,7 @@ ThisBuild / resolvers    ++= Seq("Confluent" at "https://packages.confluent.io/m
 lazy val core = (project in file("core"))
   .settings {
     name                 := "registravka4s-core"
-    libraryDependencies ++= Deps.avro4s ++ Deps.kafka ++ Deps.kafkaAvro
+    libraryDependencies ++= Deps.avro4s ++ Deps.kafka ++ Deps.kafkaAvro ++ Deps.pureConfig
   }
 
 lazy val akka = (project in file("akka"))
@@ -14,10 +14,4 @@ lazy val akka = (project in file("akka"))
   .settings {
     name := "registravka4s-akka"
     libraryDependencies ++= Deps.akka
-  }
-
-lazy val streams = (project in file("streams"))
-  .dependsOn(core)
-  .settings {
-    name := "registravka4s-streams"
   }
