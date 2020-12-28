@@ -10,11 +10,11 @@ lazy val core = (project in file("core"))
   )
 
 lazy val akka = (project in file("akka"))
-  .dependsOn(core)
   .settings(
     name := "registravka4s-akka",
     libraryDependencies ++= Deps.akka
   )
+  .dependsOn(core)
 
 lazy val docs = (project in file("mdoc"))
   .settings(
@@ -25,3 +25,9 @@ lazy val docs = (project in file("mdoc"))
   )
   .dependsOn(core, akka)
   .enablePlugins(MdocPlugin)
+
+lazy val examples = (project in file("examples"))
+  .settings(
+    name := "registravka4s-examples"
+  )
+  .dependsOn(core, akka)

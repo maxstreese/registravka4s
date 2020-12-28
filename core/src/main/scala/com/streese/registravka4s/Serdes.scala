@@ -3,7 +3,7 @@ package com.streese.registravka4s
 import java.lang.{Long => JLong, Float => JFloat, Double => JDouble, Integer => JInt}
 import java.{util => ju}
 
-import com.sksamuel.avro4s.RecordFormat
+import com.sksamuel.avro4s.{Encoder, Decoder, RecordFormat, SchemaFor}
 import org.apache.kafka.common.utils.{Bytes => KBytes}
 import org.apache.kafka.common.serialization.{Serde => KSerde, Serdes => KSerdes, Serializer, Deserializer}
 import io.confluent.kafka.streams.serdes.avro.GenericAvroSerde
@@ -41,6 +41,8 @@ trait Serdes {
   implicit val valueAvroSerdeInt: ValueSerde[Int] = KSerdes.Integer().asInstanceOf[ValueSerde[Int]]
   implicit val valueAvroSerdeJavaInt: ValueSerde[JInt] = KSerdes.Integer().asInstanceOf[ValueSerde[JInt]]
   implicit val valueAvroSerdeJavaUUID: ValueSerde[ju.UUID] = KSerdes.UUID().asInstanceOf[ValueSerde[ju.UUID]]
+
+  implicit def avroRecordFormatGeneric[T: Encoder: Decoder: SchemaFor]: RecordFormat[T] = RecordFormat[T]
 
   implicit def keyAvroSerdeGeneric[T >: Null](
     implicit
