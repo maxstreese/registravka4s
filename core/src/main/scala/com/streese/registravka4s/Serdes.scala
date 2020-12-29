@@ -7,6 +7,7 @@ import com.sksamuel.avro4s.{Encoder, Decoder, RecordFormat, SchemaFor}
 import org.apache.kafka.common.utils.{Bytes => KBytes}
 import org.apache.kafka.common.serialization.{Serde => KSerde, Serdes => KSerdes, Serializer, Deserializer}
 import io.confluent.kafka.streams.serdes.avro.GenericAvroSerde
+import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient
 
 import scala.jdk.CollectionConverters._
 
@@ -56,7 +57,7 @@ trait Serdes {
     recordFormat: RecordFormat[T]
   ): ValueSerde[T] = kafkaSerde(genericAvroSerde(config, forKey = false), recordFormat).asInstanceOf[ValueSerde[T]] 
 
-  private def kafkaSerde[T >: Null](
+  private[registravka4s] def kafkaSerde[T >: Null](
     genericAvroSerde: GenericAvroSerde,
     recordFormat: RecordFormat[T]
   ): KSerde[T] = {
@@ -76,8 +77,10 @@ trait Serdes {
     )
   }
 
-  private def genericAvroSerde(config: AvroSerdeConfig, forKey: Boolean): GenericAvroSerde = {
-    val serde = new GenericAvroSerde()
+  private[registravka4s] def genericAvroSerde(config: AvroSerdeConfig, forKey: Boolean): GenericAvroSerde = {
+    val serde =
+      if(config.useMockedClient) new GenericAvroSerde(new MockSchemaRegistryClient())
+      else new GenericAvroSerde()
     serde.configure(config.toMap.asJava, forKey)
     serde
   }

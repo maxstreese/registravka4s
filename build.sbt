@@ -16,6 +16,13 @@ lazy val akka = (project in file("akka"))
   )
   .dependsOn(core)
 
+lazy val benchmarks = (project in file("benchmarks"))
+  .settings(
+    name := "registravka4s-benchmarks"
+  )
+  .dependsOn(core)
+  .enablePlugins(JmhPlugin)
+
 lazy val docs = (project in file("mdoc"))
   .settings(
     mdocOut := (ThisBuild / baseDirectory).value,

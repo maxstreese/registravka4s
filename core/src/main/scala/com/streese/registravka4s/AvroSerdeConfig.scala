@@ -7,7 +7,7 @@ import pureconfig.{ConfigSource, ConfigReader}
 
 import scala.util.Try
 
-case class AvroSerdeConfig(schemaRegistryUrls: Seq[String]) {
+case class AvroSerdeConfig(schemaRegistryUrls: Seq[String], useMockedClient: Boolean = false) {
   def toMap = Map[String, Any](
     SerDeConf.SCHEMA_REGISTRY_URL_CONFIG -> schemaRegistryUrls.mkString(",")
   )
