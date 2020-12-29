@@ -1,21 +1,16 @@
 name: Manually Triggered Workflow
 
-on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: 'Person to greet'
-        required: true
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
+on: workflow_dispatch
 
 jobs:
-  say_hello:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo "Hello ${{ github.event.inputs.name }}!"
-        echo "- in ${{ github.event.inputs.home }}!"
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Setup Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Do SBT Stuff
+      run: sbt version
