@@ -12,6 +12,9 @@ on:
       iterations:
         description: 'Number of iterations for each benchmark'
         default: 15
+      benchmark-regex:
+        description: 'Regex specifying which benchmarks to run'
+        default: '.*'
 
 jobs:
   benchmark:
@@ -29,7 +32,8 @@ jobs:
         -f ${{ github.event.inputs.forks }}
         -wi ${{ github.event.inputs.warmup-iterations }}
         -i ${{ github.event.inputs.iterations }}
-        -rf csv'
+        -rf csv
+        ${{ github.event.inputs.benchmark-regex }}'
     - name: 'Archive Results'
       uses: 'actions/upload-artifact@v2'
       with:

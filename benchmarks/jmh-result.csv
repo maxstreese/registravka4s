@@ -1,5 +1,0 @@
-"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit"
-"com.streese.registravka4s.benchmarks.JMHSample_01_GenericRecordSerialization.unwrapped","thrpt",1,1,6350.800200,NaN,"ops/s"
-"com.streese.registravka4s.benchmarks.JMHSample_01_GenericRecordSerialization.unwrappedLooped","thrpt",1,1,0.684107,NaN,"ops/s"
-"com.streese.registravka4s.benchmarks.JMHSample_01_GenericRecordSerialization.wrapped","thrpt",1,1,7451.334361,NaN,"ops/s"
-"com.streese.registravka4s.benchmarks.JMHSample_01_GenericRecordSerialization.wrappedLooped","thrpt",1,1,0.890219,NaN,"ops/s"
