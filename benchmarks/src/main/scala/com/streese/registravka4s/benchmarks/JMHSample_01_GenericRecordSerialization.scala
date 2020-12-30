@@ -2,9 +2,8 @@ package com.streese.registravka4s.benchmarks
 
 import com.streese.registravka4s.AvroSerdeConfig
 import com.streese.registravka4s.Serdes.Implicits
-import com.streese.registravka4s.benchmarks.Records._
+import com.streese.registravka4s.benchmarks.models._
 import org.openjdk.jmh.annotations.{Benchmark, Scope, State}
-import com.streese.registravka4s.benchmarks.Avro4sBenchmarkSetup.{County, Town}
 
 object JMHSample_01_GenericRecordSerialization {
 
