@@ -1,3 +1,0 @@
-"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit"
-"com.streese.registravka4s.benchmarks.JMHSample_02_Avro4s.generic","thrpt",1,15,2560865.369472,62186.790525,"ops/s"
-"com.streese.registravka4s.benchmarks.JMHSample_02_Avro4s.specific","thrpt",1,15,36277.839271,384.204887,"ops/s"

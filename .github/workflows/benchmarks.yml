@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       forks:
-        description: 'Number of times he JVM is forked for each benchmark'
-        default: 3
+        description: 'Number of times the JVM is forked for each benchmark'
+        default: 1
       warmup-iterations:
         description: 'Number of warmup iterations for each benchmark'
         default: 15
