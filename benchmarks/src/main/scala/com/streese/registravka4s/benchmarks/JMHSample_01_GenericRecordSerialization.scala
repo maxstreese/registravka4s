@@ -11,9 +11,11 @@ object JMHSample_01_GenericRecordSerialization {
   @State(Scope.Benchmark)
   class BenchmarkState {
 
-    val topic = "people"
+    private val county = County("Bucks", Seq(Town("Hardwick", 123), Town("Weedon", 225)), true, 12.34, 0.123)
 
-    val county = County("Bucks", Seq(Town("Hardwick", 123), Town("Weedon", 225)), true, 12.34, 0.123)
+    val record = Implicits.avroRecordFormatGeneric[County].to(county)
+
+    val topic = "people"
 
     val genericAvroSerde =
       Implicits.genericAvroSerde(AvroSerdeConfig(Seq("localhost:8081"), useMockedClient = true), forKey = false)
@@ -30,7 +32,7 @@ class JMHSample_01_GenericRecordSerialization {
   def unwrapped(state: BenchmarkState): Unit = {
     state.genericAvroSerde.serializer().serialize(
       state.topic,
-      Implicits.avroRecordFormatGeneric[County].to(state.county)
+      state.record
     )
   }
 
@@ -38,7 +40,7 @@ class JMHSample_01_GenericRecordSerialization {
   def wrapped(state: BenchmarkState): Unit = {
     state.genericAvroSerde.serializer().serialize(
       state.topic,
-      new WrappedGenericRecord(Implicits.avroRecordFormatGeneric[County].to(state.county))
+      new WrappedGenericRecord(state.record)
     )
   }
 
