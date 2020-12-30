@@ -1,0 +1,37 @@
+name: 'Benchmarks'
+
+on:
+  workflow_dispatch:
+    inputs:
+      forks:
+        description: 'Number of times he JVM is forked for each benchmark'
+        default: 3
+      warmup-iterations:
+        descrition: 'Number of warmup iterations for each benchmark'
+        default: 15
+      iterations:
+        description: 'Number of iterations for each benchmark'
+        default: 15
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: 'Checkout Repository'
+      uses: 'actions/checkout@v2'
+    - name: 'Setup Java'
+      uses: 'actions/setup-java@v1'
+      with:
+        java-version: 11
+    - name: 'Perform Benchmarks'
+      run: >
+        sbt benchmarks/jmh:run
+        -f ${{ github.event.inputs.forks }}
+        -wi ${{ github.event.inputs.warmup-iterations }}
+        -i ${{ github.event.inputs.iterations }}
+        -rf csv
+    - name: 'Archive Results'
+      uses: 'actions/upload-artifact@v2'
+      with:
+        name: 'Benchmark Results'
+        path: 'benchmarks/jmh-result.csv'
