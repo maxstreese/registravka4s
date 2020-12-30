@@ -7,7 +7,7 @@ on:
         description: 'Number of times he JVM is forked for each benchmark'
         default: 3
       warmup-iterations:
-        descrition: 'Number of warmup iterations for each benchmark'
+        description: 'Number of warmup iterations for each benchmark'
         default: 15
       iterations:
         description: 'Number of iterations for each benchmark'
