@@ -1,0 +1,3 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit"
+"com.streese.registravka4s.benchmarks.JMHSample_01_GenericRecordSerialization.unwrapped","thrpt",1,5,29292.555234,866.884913,"ops/s"
+"com.streese.registravka4s.benchmarks.JMHSample_01_GenericRecordSerialization.wrapped","thrpt",1,5,1912176.146065,41342.621860,"ops/s"
