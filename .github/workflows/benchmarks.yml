@@ -39,4 +39,4 @@ jobs:
       uses: EndBug/add-and-commit@v6
       with:
         add: 'benchmarks/results/benchmark-${{ github.run_number }}.csv'
-        message: 'Add benchmark results'
+        message: 'Add benchmark results for benchmark run ${{ github.run_number }}'
