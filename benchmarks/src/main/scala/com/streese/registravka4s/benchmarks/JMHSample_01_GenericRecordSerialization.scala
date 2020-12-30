@@ -3,7 +3,7 @@ package com.streese.registravka4s.benchmarks
 import com.streese.registravka4s.AvroSerdeConfig
 import com.streese.registravka4s.Serdes.Implicits
 import com.streese.registravka4s.benchmarks.Records._
-import org.openjdk.jmh.annotations.{Benchmark, Scope}
+import org.openjdk.jmh.annotations.{Benchmark, OperationsPerInvocation, Scope}
 
 import scala.util.Try
 import org.openjdk.jmh.annotations.State
@@ -48,10 +48,6 @@ class JMHSample_01_GenericRecordSerialization {
   import JMHSample_01_GenericRecordSerialization._
 
   @Benchmark
-  def baseline(state: BenchmarkState): Unit = (
-  )
-
-  @Benchmark
   def unwrapped(state: BenchmarkState): Unit = {
     state.genericAvroSerde.serializer().serialize(
       state.topic,
@@ -65,6 +61,28 @@ class JMHSample_01_GenericRecordSerialization {
       state.topic,
       new WrappedGenericRecord(Implicits.avroRecordFormatGeneric[SomeComplexRecord].to(state.record))
     )
+  }
+
+  @Benchmark
+  @OperationsPerInvocation(10000)
+  def unwrappedLooped(state: BenchmarkState): Unit = {
+    (1 to 10000).foreach {
+      state.genericAvroSerde.serializer().serialize(
+        state.topic,
+        Implicits.avroRecordFormatGeneric[SomeComplexRecord].to(state.record)
+      )
+    }
+  }
+
+  @Benchmark
+  @OperationsPerInvocation(10000)
+  def wrappedLooped(state: BenchmarkState): Unit = {
+    (1 to 10000).foreach {
+      state.genericAvroSerde.serializer().serialize(
+        state.topic,
+        new WrappedGenericRecord(Implicits.avroRecordFormatGeneric[SomeComplexRecord].to(state.record))
+      )
+    }
   }
 
 }
