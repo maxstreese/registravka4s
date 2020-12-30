@@ -35,11 +35,6 @@ jobs:
         -rf csv
         -rff results/benchmark-${{ github.run_number }}.csv
         ${{ github.event.inputs.benchmark-regex }}'
-    - name: 'Archive Results'
-      uses: 'actions/upload-artifact@v2'
-      with:
-        name: 'Benchmark Results'
-        path: 'benchmarks/jmh-result.csv'
     - name: 'Commit Benchmark Results'
       uses: EndBug/add-and-commit@v6
       with:
