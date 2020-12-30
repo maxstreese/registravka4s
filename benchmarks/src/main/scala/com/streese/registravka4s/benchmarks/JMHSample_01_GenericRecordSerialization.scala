@@ -66,7 +66,7 @@ class JMHSample_01_GenericRecordSerialization {
   @Benchmark
   @OperationsPerInvocation(10000)
   def unwrappedLooped(state: BenchmarkState): Unit = {
-    (1 to 10000).foreach {
+    (1 to 10000).toSeq.foreach { _ =>
       state.genericAvroSerde.serializer().serialize(
         state.topic,
         Implicits.avroRecordFormatGeneric[SomeComplexRecord].to(state.record)
@@ -77,7 +77,7 @@ class JMHSample_01_GenericRecordSerialization {
   @Benchmark
   @OperationsPerInvocation(10000)
   def wrappedLooped(state: BenchmarkState): Unit = {
-    (1 to 10000).foreach {
+    (1 to 10000).toSeq.foreach { _ =>
       state.genericAvroSerde.serializer().serialize(
         state.topic,
         new WrappedGenericRecord(Implicits.avroRecordFormatGeneric[SomeComplexRecord].to(state.record))
