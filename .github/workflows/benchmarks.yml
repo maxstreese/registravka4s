@@ -14,7 +14,7 @@ on:
         default: 15
 
 jobs:
-  build:
+  benchmark:
     runs-on: 'ubuntu-latest'
     steps:
     - name: 'Checkout Repository'
@@ -25,11 +25,11 @@ jobs:
         java-version: 11
     - name: 'Perform Benchmarks'
       run: >
-        sbt benchmarks/jmh:run
+        sbt 'benchmarks/jmh:run
         -f ${{ github.event.inputs.forks }}
         -wi ${{ github.event.inputs.warmup-iterations }}
         -i ${{ github.event.inputs.iterations }}
-        -rf csv
+        -rf csv'
     - name: 'Archive Results'
       uses: 'actions/upload-artifact@v2'
       with:
