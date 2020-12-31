@@ -5,7 +5,11 @@ ThisBuild / resolvers    ++= Seq("Confluent" at "https://packages.confluent.io/m
 lazy val core = (project in file("core"))
   .settings(
     name                 := "registravka4s-core",
-    libraryDependencies ++= Deps.avro4s ++ Deps.kafka ++ Deps.kafkaAvro ++ Deps.pureConfig
+    libraryDependencies ++= Deps.avro4s ++ Deps.kafka ++ Deps.kafkaAvro ++ Deps.pureConfig,
+    git.gitTagToVersionNumber := { tag: String =>
+      if(tag matches "[0-9]+\\..*") Some(tag)
+      else None
+    }
   )
   .enablePlugins(GitVersioning)
 
