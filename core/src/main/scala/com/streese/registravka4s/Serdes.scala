@@ -65,7 +65,7 @@ trait Serdes {
       new Serializer[T] {
         override def serialize(topic: String, data: T): Array[Byte] = {
           if (data == null) null
-          else genericAvroSerde.serializer().serialize(topic, recordFormat.to(data))
+          else genericAvroSerde.serializer().serialize(topic, new WrappedGenericRecord(recordFormat.to(data)))
         }
       },
       new Deserializer[T] {
