@@ -95,5 +95,5 @@ If you look at the amount of code in this repository you will realize that it is
 that is really done here is wiring up a few existing libraries in what I would consider a fairly smart way.
 Therefore special credit goes to:
 
-* [Avro4s](https://github.com/sksamuel/avro4s): The library that derives Avro schemata and codecs for your Scala ADTs at compile time
-* @yeryomenkom: The smart guy I know that actually came up with most of this code
+* [Avro4s](https://github.com/sksamuel/avro4s): The library that derives Avro schemata and codecs for your Scala ADTs
+* [@yeryomenkom](https://github.com/yeryomenkom): The smart guy I know that actually came up with most of this code
