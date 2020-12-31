@@ -6,6 +6,7 @@ import akka.actor.ActorSystem
 import akka.kafka.scaladsl.Producer
 import akka.stream.scaladsl.Source
 import com.streese.registravka4s.akka.ProducerSettings
+import com.streese.registravka4s.examples.model._
 import com.streese.registravka4s.{AvroSerdeConfig, Serdes}
 import org.apache.kafka.clients.producer.ProducerRecord
 

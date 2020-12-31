@@ -5,13 +5,34 @@ Apache Kafka by simply defining your data model as ADTs (via traits and case cla
 
 ## Motivation
 
-t.b.d.
+Kafka itself does not care which encoding you use for the data you put into it so your options are basically limitless.
+If however schema evolution is a concern for you and you want better integration with the broader Kafka ecosystem then
+utilizing the Confluent Schema Registry is a good choice.
+
+When using Schema Registry your choice is between Avro, JSON and Protocol Buffers. If performance is of concern then
+non-binary formats like JSON should be ruled out. Therefore Avro and Protocol Buffers remain. Between those two the
+choice is less clear to me. This library focuses on Avro simply because it was the original format supported by
+Schema Registry and to my knowledge provides the best integration with other ecosystem components (though I could
+be proven wrong here).
+
+Now that we know we would like to use Schema Registry with the Avro format and code in Scala, what's next?
+There are two options I know of:
+
+1. Write Avro schemata by hand and either automatically or manually generate codecs for them in a way that integrates with Schema Registry
+2. Write Scala ADTs (via traits and case classes) and have some magic wire thins up for you such that schemata and codecs are derived and integrated with Schema Registry
+
+As far as I know option 1 is the one you usually read about and also experience in other languages. I find this
+method to be very tedious and inelegant. It is more labour intensive than option 2 and produces more code/scaffolding.
+
+In comparison when going with option 2 all you got to do is to define your data model as you would anyway in Scala
+via traits and case classes. An approach I consider to be much more elegant and also more comprehensible.
+
+Finally two notes about all of this:
+
+* Extending this library to work with JSON and Protocol Buffers as well might be a nice addition
+* The thoughts above represent my own thinking. If someone has points to add to the above or disprove it please feel free to share them
 
 ## Dependencies For A Project In SBT Style
-
-Please note that the only required dependency for any project from the below list is `core`. All other dependencies
-may be added depending on the library/framework you use to interact with Kafka (e.g. `akka`). As of writing this,
-Registravka4s does only support Akka.
 
 ```scala
 libraryDependencies ++= (
@@ -19,6 +40,10 @@ libraryDependencies ++= (
   "com.streese" % "registravka4s-akka" % "0.1.0-SNAPSHOT"
 )
 ```
+
+Please note that the only required dependency for any project from the above list is `core`. All other dependencies
+may be added depending on the library/framework you use to interact with Kafka (e.g. `akka`). As of writing this,
+Registravka4s only supports Akka.
 
 ## Complete Example For An Akka Streams Kafka Producer
 
@@ -66,4 +91,9 @@ running and exposed at `localhost:9092` as well as Schema Registry at `localhost
 
 ## Special Credits
 
-t.b.d.
+If you look at the amount of code in this repository you will realize that it is actually very little. In the end all
+that is really done here is wiring up a few existing libraries in what I would consider a fairly smart way.
+Therefore special credit goes to:
+
+* [Avro4s](https://github.com/sksamuel/avro4s): The library that derives Avro schemata and codecs for your Scala ADTs at compile time
+* @yeryomenkom: The smart guy I know that actually came up with most of this code
