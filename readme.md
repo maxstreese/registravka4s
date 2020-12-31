@@ -19,12 +19,12 @@ Now that we know we would like to use Schema Registry with the Avro format and c
 There are two options I know of:
 
 1. Write Avro schemata by hand and either automatically or manually generate codecs for them in a way that integrates with Schema Registry
-2. Write Scala ADTs (via traits and case classes) and have some magic wire thins up for you such that schemata and codecs are derived and integrated with Schema Registry
+2. Write Scala ADTs (via traits and case classes) and have some magic wire things up for you such that schemata and codecs are derived and integrated with Schema Registry
 
-As far as I know option 1 is the one you usually read about and also experience in other languages. I find this
-method to be very tedious and inelegant. It is more labour intensive than option 2 and produces more code/scaffolding.
+As far as I know option one is the one you usually read about and also experience in other languages. I find this
+method to be very tedious and inelegant. It is more labour intensive than option two and requires more code/scaffolding.
 
-In comparison when going with option 2 all you got to do is to define your data model as you would anyway in Scala
+In comparison when going with option two all you got to do is to define your data model as you would anyway in Scala
 via traits and case classes. An approach I consider to be much more elegant and also more comprehensible.
 
 Finally two notes about all of this:
