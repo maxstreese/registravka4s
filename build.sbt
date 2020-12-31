@@ -3,11 +3,11 @@ ThisBuild / scalaVersion  := "2.13.4"
 ThisBuild / resolvers    ++= Seq("Confluent" at "https://packages.confluent.io/maven/")
 
 lazy val core = (project in file("core"))
-  .settings(
+ .settings(
     name                 := "registravka4s-core",
     libraryDependencies ++= Deps.avro4s ++ Deps.kafka ++ Deps.kafkaAvro ++ Deps.pureConfig,
     git.gitTagToVersionNumber := { tag: String =>
-      if(tag matches "[0-9]+\\..*") Some(tag)
+      if (tag matches "[0-9]+\\..*") Some(tag)
       else None
     }
   )
