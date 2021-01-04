@@ -38,9 +38,11 @@ Finally two notes about all of this:
 ## Dependencies For A Project In SBT Style
 
 ```scala
+lazy val registravka4sVersion = "@VERSION"
+
 libraryDependencies ++= (
-  "com.streese" % "registravka4s-core" % "@VERSION@",
-  "com.streese" % "registravka4s-akka" % "@VERSION@"
+  "com.streese" %% "registravka4s-core" % registravka4sVersion,
+  "com.streese" %% "registravka4s-akka" % registravka4sVersion
 )
 ```
 
