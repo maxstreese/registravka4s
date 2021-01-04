@@ -27,8 +27,9 @@ There are two options I know of:
 As far as I know option one is the one you usually read about and also experience in other languages. I find this
 method to be very tedious and inelegant. It is more labour intensive than option two and requires more code/scaffolding.
 
-In comparison when going with option two all you got to do is to define your data model as you would anyway in Scala
-via traits and case classes. An approach I consider to be much more elegant and also more comprehensible.
+In comparison when going with option two all you got to do is define your data model as you would anyway in Scala
+via traits and case classes. An approach I consider to be much more elegant and also more comprehensible. It is this
+option that RegistrAvKa4s strives to provide.
 
 Finally two notes about all of this:
 
@@ -51,12 +52,12 @@ libraryDependencies ++= (
 
 Please note that the only required dependency for any project from the above list is `core`. All other dependencies
 may be added depending on the library/framework you use to interact with Kafka (e.g. `akka`). As of writing this,
-Registravka4s only supports Akka.
+RegistrAvKa4s only supports Akka.
 
 ## Complete Example For An Akka Streams Kafka Producer
 
 Suppose you want to produce some records into a Kafka topic that represent some financial market data (referred to as
-ticks in this example). With Registravka4s all you need to do is define your data model as plain Scala case classes.
+ticks in this example). With RegistrAvKa4s all you need to do is define your data model as plain Scala case classes.
 The derivation of all Avro schemata and records as well as integration with the Confluent Schema Registry is handled
 for you.
 
