@@ -3,6 +3,9 @@
 RegistrAvKa4s allows you to produce/consume Confluent Schema Registry compatible Apache Avro records to/from
 Apache Kafka by simply defining your data model as ADTs (via traits and case classes) in plain Scala code.
 
+> **_NOTE:_**  As of this writing this library has not actually been published to Sonatype / Maven Central. Hence when
+> wanting to use this library you currently have to build it from source.
+
 ## Motivation
 
 Kafka itself does not care which encoding you use for the data you put into it so your options are basically limitless.
@@ -40,6 +43,9 @@ libraryDependencies ++= (
   "com.streese" % "registravka4s-akka" % "4.0.4"
 )
 ```
+
+> **_NOTE:_**  As of this writing this library has not actually been published to Sonatype / Maven Central. The version
+> written above is fake.
 
 Please note that the only required dependency for any project from the above list is `core`. All other dependencies
 may be added depending on the library/framework you use to interact with Kafka (e.g. `akka`). As of writing this,
