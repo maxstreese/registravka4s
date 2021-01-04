@@ -36,8 +36,8 @@ Finally two notes about all of this:
 
 ```scala
 libraryDependencies ++= (
-  "com.streese" % "registravka4s-core" % "0.1.0-SNAPSHOT",
-  "com.streese" % "registravka4s-akka" % "0.1.0-SNAPSHOT"
+  "com.streese" % "registravka4s-core" % "4.0.4",
+  "com.streese" % "registravka4s-akka" % "4.0.4"
 )
 ```
 
