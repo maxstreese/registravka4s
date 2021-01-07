@@ -12,7 +12,7 @@ ThisBuild / git.gitTagToVersionNumber := { tag: String =>
 lazy val libAkkaStreamsKafka       = "com.typesafe.akka"     %% "akka-stream-kafka"        % "2.0.6"
 lazy val libAvro4s                 = "com.sksamuel.avro4s"   %% "avro4s-core"              % "4.0.3"
 lazy val libCoursier               = "io.get-coursier"       %% "coursier"                 % "2.0.7"
-lazy val libKafka                  = "org.apache.kafka"      %% "kafka"                    % "2.6.0"
+lazy val libKafka                  = "org.apache.kafka"      %% "kafka"                    % "2.7.0"
 lazy val libKafkaStreamsAvroSerde  = "io.confluent"          %  "kafka-streams-avro-serde" % "6.0.1"
 lazy val libPureConfig             = "com.github.pureconfig" %% "pureconfig"               % "0.14.0"
 
