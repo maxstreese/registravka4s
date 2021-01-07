@@ -4,10 +4,14 @@
   ],
   "prHourlyLimit": 0,
   "reviewers": ["maxstreese"],
-  "hostRules": [
+  "packageRules": [
     {
-      "hostType": "maven",
-      "baseUrl": "https://packages.confluent.io/maven/"
+      "managers": ["maven"],
+      "registryUrls": [
+        "https://repo.maven.apache.org/maven2",
+        "https://packages.confluent.io/maven",
+        "https://dl.bintray.com/sbt/sbt-plugin-releases"
+      ]
     }
   ]
 }
