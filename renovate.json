@@ -6,7 +6,7 @@
   "reviewers": ["maxstreese"],
   "packageRules": [
     {
-      "managers": ["maven"],
+      "managers": ["sbt"],
       "registryUrls": [
         "https://repo.maven.apache.org/maven2",
         "https://packages.confluent.io/maven",
