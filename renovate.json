@@ -5,7 +5,9 @@
   "prHourlyLimit": 0,
   "reviewers": ["maxstreese"],
   "hostRules": [
-    "hostType": "maven",
-    "baseUrl": "https://packages.confluent.io/maven/"
+    {
+      "hostType": "maven",
+      "baseUrl": "https://packages.confluent.io/maven/"
+    }
   ]
 }
