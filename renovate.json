@@ -12,6 +12,10 @@
         "https://packages.confluent.io/maven",
         "https://dl.bintray.com/sbt/sbt-plugin-releases"
       ]
+    },
+    {
+      "packageNames": ["ch.epfl.scala:sbt-bloop"],
+      "allowedVersions": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/"
     }
   ]
 }
