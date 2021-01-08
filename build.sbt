@@ -1,13 +1,7 @@
 ThisBuild / organization  := "com.streese"
 ThisBuild / scalaVersion  := "2.13.4"
+ThisBuild / version       := "0.0.0-SNAPSHOT"
 ThisBuild / resolvers    ++= Seq("Confluent" at "https://packages.confluent.io/maven/")
-
-enablePlugins(GitVersioning)
-ThisBuild / git.useGitDescribe        := true
-ThisBuild / git.gitTagToVersionNumber := { tag: String =>
-  if(tag matches "[0-9]+\\.[0-9]+\\.[0-9]+") Some(tag)
-  else None
-}
 
 lazy val libAkkaStreamsKafka       = "com.typesafe.akka"     %% "akka-stream-kafka"        % "2.0.6"
 lazy val libAvro4s                 = "com.sksamuel.avro4s"   %% "avro4s-core"              % "4.0.4"
