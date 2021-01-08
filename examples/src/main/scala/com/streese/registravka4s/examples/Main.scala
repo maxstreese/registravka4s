@@ -7,10 +7,10 @@ import akka.kafka.scaladsl.Producer
 import akka.stream.scaladsl.Source
 import com.streese.registravka4s.akka.ProducerSettings
 import com.streese.registravka4s.examples.model._
-import com.streese.registravka4s.{AvroSerdeConfig, Serdes}
+import com.streese.registravka4s.{AvroSerdeConfig, GenericRecordFormat, GenericSerde}
 import org.apache.kafka.clients.producer.ProducerRecord
 
-object Main extends App with Serdes {
+object Main extends App with GenericRecordFormat with GenericSerde {
 
   implicit val actorSystem: ActorSystem = ActorSystem("registravka4s-example-actor-system")
   implicit val avroSerdeConfig: AvroSerdeConfig = AvroSerdeConfig(Seq("http://localhost:8081"))

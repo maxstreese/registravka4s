@@ -1,19 +1,13 @@
 package com.streese.registravka4s
 
-import com.sksamuel.avro4s.{Encoder, Decoder, RecordFormat, SchemaFor}
+import com.sksamuel.avro4s.RecordFormat
 import org.apache.kafka.common.serialization.{Serde => KSerde, Serdes => KSerdes, Serializer, Deserializer}
 import io.confluent.kafka.streams.serdes.avro.GenericAvroSerde
 import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient
 
 import scala.jdk.CollectionConverters._
 
-object Serdes {
-  object Implicits extends Serdes
-}
-
-trait Serdes {
-
-  implicit def avroRecordFormatGeneric[T: Encoder: Decoder: SchemaFor]: RecordFormat[T] = RecordFormat[T]
+trait GenericSerde {
 
   implicit def keyAvroSerdeGeneric[T >: Null](
     implicit
@@ -54,5 +48,11 @@ trait Serdes {
     serde.configure(config.toMap.asJava, forKey)
     serde
   }
+
+}
+
+object GenericSerde {
+
+  object Implicits extends GenericSerde
 
 }

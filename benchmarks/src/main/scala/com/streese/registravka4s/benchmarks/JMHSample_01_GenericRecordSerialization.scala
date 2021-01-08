@@ -1,7 +1,8 @@
 package com.streese.registravka4s.benchmarks
 
 import com.streese.registravka4s.{AvroSerdeConfig, WrappedGenericRecord}
-import com.streese.registravka4s.Serdes.Implicits
+import com.streese.registravka4s.GenericRecordFormat
+import com.streese.registravka4s.GenericSerde
 import com.streese.registravka4s.benchmarks.model._
 import org.openjdk.jmh.annotations.{Benchmark, Scope, State}
 
@@ -12,9 +13,9 @@ object JMHSample_01_GenericRecordSerialization {
 
     private val county = County("Bucks", Seq(Town("Hardwick", 123), Town("Weedon", 225)), true, 12.34, 0.123)
 
-    val genericAvroSerde = Implicits.genericAvroSerde(AvroSerdeConfig(Seq("localhost:8081"), true), false)
+    val genericAvroSerde = GenericSerde.Implicits.genericAvroSerde(AvroSerdeConfig(Seq("localhost:8081"), true), false)
 
-    val record = Implicits.avroRecordFormatGeneric[County].to(county)
+    val record = GenericRecordFormat.Implicits.avroRecordFormatGeneric[County].to(county)
 
     val topic = "people"
 

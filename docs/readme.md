@@ -71,7 +71,8 @@ import akka.kafka.scaladsl.Producer
 import akka.stream.scaladsl.Source
 import com.streese.registravka4s.akka.ProducerSettings
 import com.streese.registravka4s.AvroSerdeConfig
-import com.streese.registravka4s.Serdes.Implicits._
+import com.streese.registravka4s.GenericRecordFormat.Implicits._
+import com.streese.registravka4s.GenericSerde.Implicits._
 import org.apache.kafka.clients.producer.ProducerRecord
 
 case class Instrument(isin: String, currency: String)
