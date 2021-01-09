@@ -44,8 +44,8 @@ Finally two notes about all of this:
 lazy val registravka4sVersion = "4.0.4"
 
 libraryDependencies ++= (
-  "com.streese" %% "registravka4s-core" % registravka4sVersion,
-  "com.streese" %% "registravka4s-akka" % registravka4sVersion
+  "com.streese.registravka4s" %% "registravka4s-core" % registravka4sVersion,
+  "com.streese.registravka4s" %% "registravka4s-akka" % registravka4sVersion
 )
 ```
 
