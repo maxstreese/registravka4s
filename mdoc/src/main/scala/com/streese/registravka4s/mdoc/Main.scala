@@ -1,5 +1,6 @@
 package com.streese.registravka4s.mdoc
 
+import com.streese.registravka4s.build.info.BuildInfo
 import coursier._
 
 import scala.util.Try
@@ -28,6 +29,6 @@ object Main {
 
     res.reconciledVersions.get(module).get
 
-  }.getOrElse("0.0.0")
+  }.getOrElse(BuildInfo.version)
 
 }

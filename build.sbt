@@ -40,10 +40,12 @@ lazy val docs = (project in file("mdoc"))
     libraryDependencies ++= Seq(libCoursier),
     mdoc                 := run.in(Compile).evaluated,
     mdocOut              := (ThisBuild / baseDirectory).value,
-    publish / skip       := true
+    publish / skip       := true,
+    buildInfoKeys        := Seq[BuildInfoKey](version),
+    buildInfoPackage     := "com.streese.registravka4s.build.info"
   )
   .dependsOn(core, akka)
-  .enablePlugins(MdocPlugin)
+  .enablePlugins(BuildInfoPlugin, MdocPlugin)
 
 lazy val examples = (project in file("examples"))
   .settings(

@@ -36,7 +36,7 @@ jobs:
         OSSRH_USER: '${{ secrets.OSSRH_USER }}'
         OSSRH_PASSWORD: '${{ secrets.OSSRH_PASSWORD }}'
     - name: 'Update Documentation'
-      run: 'sbt docs/mdoc'
+      run: 'sbt ''set ThisBuild / version := "${{ github.event.inputs.version }}"'' docs/mdoc'
     - name: 'Push Documentation Changes And Tag'
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
