@@ -19,16 +19,21 @@ object Main {
 
   }
 
-  def determineVersion(): String = Try {
+  def determineVersion(): String = {
+    if (BuildInfo.version.endsWith("-SNAPSHOT")) {
+      Try {
 
-    val module = mod"com.streese.registravka4s::registravka4s-core"
+        val module = mod"com.streese.registravka4s::registravka4s-core"
 
-    val res = Resolve()
-    .addDependencies(Dependency(module, "latest.release"))
-    .run()
+        val res = Resolve()
+          .addDependencies(Dependency(module, "latest.release"))
+          .run()
 
-    res.reconciledVersions.get(module).get
+        res.reconciledVersions.get(module).get
 
-  }.getOrElse(BuildInfo.version)
+      }.getOrElse(BuildInfo.version)
+    }
+    else BuildInfo.version
+  }
 
 }
