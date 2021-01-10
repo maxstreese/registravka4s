@@ -86,12 +86,8 @@ ThisBuild / developers := List(
 )
 
 ThisBuild / pomIncludeRepository := { _ => false }
-ThisBuild / publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
-ThisBuild / publishMavenStyle := true
+ThisBuild / publishTo            := sonatypePublishToBundle.value
+ThisBuild / publishMavenStyle    := true
 
 ThisBuild / credentials += Credentials(
   realm    = "Sonatype Nexus Repository Manager",
