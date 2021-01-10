@@ -29,12 +29,16 @@ jobs:
       uses: 'crazy-max/ghaction-import-gpg@v3'
       with:
         gpg-private-key: '${{ secrets.GPG_PRIVATE_KEY }}'
-        passphrase: '${{ secrets.PASSPHRASE }}'
+        passphrase: '${{ secrets.GPG_PASSPHRASE }}'
     - name: 'Publish Release'
       run: 'sbt ''set ThisBuild / version := "${{ github.event.inputs.version }}"'' publishSigned'
+      env:
+        OSSRH_USER: '${{ secrets.OSSRH_USER }}'
+        OSSRH_PASSWORD: '${{ secrets.OSSRH_PASSWORD }}'
     - name: 'Update Documentation'
       run: 'sbt docs/mdoc'
     - name: 'Push Documentation Changes And Tag'
       uses: stefanzweifel/git-auto-commit-action@v4
-      commit_message: 'Update documentation for release ${{ github.event.inputs.version }}'
-      tagging_message: 'v${{ github.event.inputs.version }}'
+      with:
+        commit_message: 'Update documentation for release ${{ github.event.inputs.version }}'
+        tagging_message: 'v${{ github.event.inputs.version }}'
