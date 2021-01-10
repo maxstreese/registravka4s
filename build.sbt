@@ -1,4 +1,4 @@
-// General Stuff
+// General
 
 ThisBuild / organization      := "com.streese.registravka4s"
 ThisBuild / scalaVersion      := "2.13.4"
@@ -61,7 +61,7 @@ lazy val libKafka                  = "org.apache.kafka"      %% "kafka"         
 lazy val libKafkaStreamsAvroSerde  = "io.confluent"          %  "kafka-streams-avro-serde" % "6.0.1"
 lazy val libPureConfig             = "com.github.pureconfig" %% "pureconfig"               % "0.14.0"
 
-// Publishing
+// Specifics For Publishing
 
 ThisBuild / organizationName     := "Streese"
 ThisBuild / organizationHomepage := Some(url("https://streese.com/"))
@@ -92,3 +92,10 @@ ThisBuild / publishTo := {
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 ThisBuild / publishMavenStyle := true
+
+ThisBuild / credentials += Credentials(
+  realm    = "Sonatype Nexus Repository Manager",
+  host     = "oss.sonatype.org",
+  userName = sys.env.getOrElse("OSSRH_USER", ""),
+  passwd   = sys.env.getOrElse("OSSRH_PASSWORD", "")
+)
