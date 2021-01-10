@@ -1,0 +1,40 @@
+name: 'Release'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The (SemVer compliant) version of the release'
+        required: true
+
+jobs:
+  release:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: 'Checkout Repository'
+      uses: 'actions/checkout@v2'
+    - name: 'Setup Java'
+      uses: 'actions/setup-java@v1'
+      with:
+        java-version: 11
+    - name: 'Cache SBT And Dependencies'
+      uses: 'actions/cache@v2'
+      with:
+        path: |
+          ~/.ivy2/cache
+          ~/.sbt
+        key: 'os-${{ runner.os }}-sbt-${{ hashFiles(''build.sbt'', ''project/build.properties'', ''project/plugins.sbt'') }}'
+        restore-keys: 'os-${{ runner.os }}-sbt-'
+    - name: 'Import GPG Key'
+      uses: 'crazy-max/ghaction-import-gpg@v3'
+      with:
+        gpg-private-key: '${{ secrets.GPG_PRIVATE_KEY }}'
+        passphrase: '${{ secrets.PASSPHRASE }}'
+    - name: 'Publish Release'
+      run: 'sbt ''set ThisBuild / version := "${{ github.event.inputs.version }}"'' publishSigned'
+    - name: 'Update Documentation'
+      run: 'sbt docs/mdoc'
+    - name: 'Push Documentation Changes And Tag'
+      uses: stefanzweifel/git-auto-commit-action@v4
+      commit_message: 'Update documentation for release ${{ github.event.inputs.version }}'
+      tagging_message: 'v${{ github.event.inputs.version }}'

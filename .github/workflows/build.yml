@@ -20,5 +20,5 @@ jobs:
           ~/.sbt
         key: 'os-${{ runner.os }}-sbt-${{ hashFiles(''build.sbt'', ''project/build.properties'', ''project/plugins.sbt'') }}'
         restore-keys: 'os-${{ runner.os }}-sbt-'
-    - name: 'Perform Build'
+    - name: 'Build Project'
       run: 'sbt test docs/mdoc'

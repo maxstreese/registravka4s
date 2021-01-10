@@ -6,8 +6,7 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-    // TODO: Replace this with registravka4s-core once a version of it is actually published
-    val module = mod"com.sksamuel.avro4s::avro4s-core"
+    val module = mod"com.streese.registravka4s::registravka4s-core"
 
     val res = Resolve()
     .addDependencies(Dependency(module, "latest.release"))
