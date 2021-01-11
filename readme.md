@@ -1,6 +1,7 @@
 # RegistrAvKa4s
 
-![Build](https://github.com/maxstreese/registravka4s/workflows/Build/badge.svg?branch=master&event=push)
+[<img src="https://img.shields.io/github/workflow/status/maxstreese/registravka4s/Build/master?style=for-the-badge"/>](https://github.com/maxstreese/registravka4s/actions?query=workflow%3ABuild)
+[<img src="https://img.shields.io/maven-central/v/com.streese.registravka4s/registravka4s-core_2.13"/>](https://search.maven.org/search?q=g:com.streese.registravka4s)
 
 RegistrAvKa4s allows you to produce/consume Confluent Schema Registry compatible Apache Avro records to/from
 Apache Kafka by simply defining your data model as ADTs (via traits and case classes) in plain Scala code.
