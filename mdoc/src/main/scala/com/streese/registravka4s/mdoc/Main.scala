@@ -3,8 +3,6 @@ package com.streese.registravka4s.mdoc
 import com.streese.registravka4s.build.info.BuildInfo
 import coursier._
 
-import scala.util.Try
-
 object Main {
 
   def main(args: Array[String]): Unit = {
@@ -20,20 +18,22 @@ object Main {
   }
 
   def determineVersion(): String = {
-    if (BuildInfo.version.endsWith("-SNAPSHOT")) {
-      Try {
 
-        val module = mod"com.streese.registravka4s::registravka4s-core"
+    if (BuildInfo.version.endsWith("-SNAPSHOT")) {
+
+        val module = mod"com.streese.registravka4s::registravka4s-akka"
 
         val res = Resolve()
           .addDependencies(Dependency(module, "latest.release"))
+          .addRepositories(MavenRepository("https://packages.confluent.io/maven/"))
           .run()
 
         res.reconciledVersions.get(module).get
 
-      }.getOrElse(BuildInfo.version)
     }
+
     else BuildInfo.version
+
   }
 
 }
