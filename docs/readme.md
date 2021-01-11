@@ -1,6 +1,6 @@
 # RegistrAvKa4s
 
-[<img src="https://img.shields.io/github/workflow/status/maxstreese/registravka4s/Build/master?style=flat-square&logo=github"/>](https://github.com/maxstreese/registravka4s/actions?query=workflow%3ABuild)
+[<img src="https://img.shields.io/github/workflow/status/maxstreese/registravka4s/Build/master?style=flat-square&logo=github"/>](https://github.com/maxstreese/registravka4s/actions?query=workflow%3ABuild+branch%3Amaster)
 [<img src="https://img.shields.io/maven-central/v/com.streese.registravka4s/registravka4s-core_2.13?style=flat-square&logo=apache%20maven"/>](https://search.maven.org/search?q=g:com.streese.registravka4s)
 
 RegistrAvKa4s allows you to produce/consume Confluent Schema Registry compatible Apache Avro records to/from
