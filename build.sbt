@@ -5,6 +5,8 @@ ThisBuild / scalaVersion      := "2.13.4"
 ThisBuild / version           := "0.0.0-SNAPSHOT"
 ThisBuild / resolvers        ++= Seq("Confluent" at "https://packages.confluent.io/maven/")
 
+Global / excludeLintKeys ++= Set(pomIncludeRepository, publishMavenStyle)
+
 // Project Definitions
 
 lazy val root = (project in file("."))
