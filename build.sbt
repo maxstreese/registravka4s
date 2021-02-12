@@ -10,7 +10,7 @@ Global / excludeLintKeys ++= Set(pomIncludeRepository, publishMavenStyle)
 // Project Definitions
 
 lazy val root = (project in file("."))
-  .aggregate(core, akka, benchmarks, docs, examples)
+  .aggregate(core, akka, streams, benchmarks, docs, examples)
   .settings(
     name           := "registravka4s",
     publish / skip := true
