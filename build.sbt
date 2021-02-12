@@ -19,13 +19,20 @@ lazy val root = (project in file("."))
 lazy val core = (project in file("core"))
  .settings(
     name                 := "registravka4s-core",
-    libraryDependencies ++= Seq(libAvro4s, libKafkaStreams, libKafkaStreamsAvroSerde, libPureConfig)
+    libraryDependencies ++= Seq(libAvro4s, libKafka, libKafkaStreamsAvroSerde, libPureConfig)
   )
 
 lazy val akka = (project in file("akka"))
   .settings(
     name                 := "registravka4s-akka",
     libraryDependencies ++= Seq(libAkkaStreamsKafka)
+  )
+  .dependsOn(core)
+
+lazy val streams = (project in file("streams"))
+  .settings(
+    name                 := "registravka4s-akka",
+    libraryDependencies ++= Seq(libKafkaStreams)
   )
   .dependsOn(core)
 
@@ -61,6 +68,7 @@ lazy val examples = (project in file("examples"))
 lazy val libAkkaStreamsKafka       = "com.typesafe.akka"     %% "akka-stream-kafka"        % "2.0.7"
 lazy val libAvro4s                 = "com.sksamuel.avro4s"   %% "avro4s-core"              % "4.0.4"
 lazy val libCoursier               = "io.get-coursier"       %% "coursier"                 % "2.0.9"
+lazy val libKafka                  = "org.apache.kafka"      %% "kafka"                    % "2.7.0"
 lazy val libKafkaStreams           = "org.apache.kafka"      %% "kafka-streams-scala"      % "2.7.0"
 lazy val libKafkaStreamsAvroSerde  = "io.confluent"          %  "kafka-streams-avro-serde" % "6.1.0"
 lazy val libPureConfig             = "com.github.pureconfig" %% "pureconfig"               % "0.14.0"
