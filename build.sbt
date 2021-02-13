@@ -31,7 +31,7 @@ lazy val akka = (project in file("akka"))
 
 lazy val streams = (project in file("streams"))
   .settings(
-    name                 := "registravka4s-akka",
+    name                 := "registravka4s-streams",
     libraryDependencies ++= Seq(libKafkaStreams)
   )
   .dependsOn(core)
@@ -46,7 +46,7 @@ lazy val benchmarks = (project in file("benchmarks"))
 
 lazy val docs = (project in file("mdoc"))
   .settings(
-    libraryDependencies ++= Seq(libCoursier, libAkkaStreamsKafka, libKafkaStreams),
+    libraryDependencies ++= Seq(libCoursier),
     mdoc                 := run.in(Compile).evaluated,
     mdocOut              := (ThisBuild / baseDirectory).value,
     publish / skip       := true,
@@ -58,9 +58,8 @@ lazy val docs = (project in file("mdoc"))
 
 lazy val examples = (project in file("examples"))
   .settings(
-    name                 := "registravka4s-examples",
-    libraryDependencies ++= Seq(libAkkaStreamsKafka, libKafkaStreams),
-    publish / skip       := true
+    name           := "registravka4s-examples",
+    publish / skip := true
   )
   .dependsOn(core, akka, streams)
 
