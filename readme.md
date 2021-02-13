@@ -54,6 +54,9 @@ RegistrAvKa4s supports Akka and Kafka Streams.
 
 ## Examples
 
+All of the examples below can also be found in application form as part of the `examples` sub-project in this
+repository.
+
 ### Akka Streams Producer
 
 Suppose you want to produce some records into a Kafka topic that represent some financial market data (referred to as
