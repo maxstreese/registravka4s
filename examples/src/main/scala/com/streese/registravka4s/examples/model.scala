@@ -8,4 +8,8 @@ object model {
 
   case class Tick(instrument: Instrument, timestamp: Instant, price: Double)
 
+  case class RefData(instrument: Instrument, name: String, `type`: String)
+
+  case class TickWithRefData(tick: Tick, refData: RefData)
+
 }

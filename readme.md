@@ -42,16 +42,19 @@ Finally two notes about all of this:
 lazy val registravka4sVersion = "0.1.0"
 
 libraryDependencies ++= (
-  "com.streese.registravka4s" %% "registravka4s-core" % registravka4sVersion,
-  "com.streese.registravka4s" %% "registravka4s-akka" % registravka4sVersion
+  "com.streese.registravka4s" %% "registravka4s-core"    % registravka4sVersion,
+  "com.streese.registravka4s" %% "registravka4s-akka"    % registravka4sVersion,
+  "com.streese.registravka4s" %% "registravka4s-streams" % registravka4sVersion
 )
 ```
 
 Please note that the only required dependency for any project from the above list is `core`. All other dependencies
 may be added depending on the library/framework you use to interact with Kafka (e.g. `akka`). As of writing this,
-RegistrAvKa4s only supports Akka.
+RegistrAvKa4s supports Akka and Kafka Streams.
 
-## Complete Example For An Akka Streams Kafka Producer
+## Examples
+
+### Akka Streams Producer
 
 Suppose you want to produce some records into a Kafka topic that represent some financial market data (referred to as
 ticks in this example). With RegistrAvKa4s all you need to do is define your data model as plain Scala case classes.
@@ -91,10 +94,48 @@ implicit val executionContext = actorSystem.dispatcher
 done.onComplete(_ => actorSystem.terminate())
 ```
 
-This example is also available in application form as part of the `examples` sub-module in this repository. Assuming
-your execution environment meets all requirements (compatibile JDK and SBT versions installed) and you got Kafka
-running and exposed at `localhost:9092` as well as Schema Registry at `localhost:8081` simply execute
-`sbt examples/run`.
+### Kafka Streams Processor
+
+Suppose you want to join some ticks with reference data via a KStream-KTable-Join. As before simply define your data
+model and processor topology in Scala and Avro is handled for you under the hood.
+
+```scala
+import java.time.Instant
+import java.util.Properties
+
+import com.streese.registravka4s.GenericRecordFormat.Implicits._
+import com.streese.registravka4s.GenericSerde.Implicits._
+import com.streese.registravka4s.streams.ImplicitConversions._
+import com.streese.registravka4s.{AvroSerdeConfig, GenericRecordFormat, GenericSerde}
+import org.apache.kafka.streams.scala.StreamsBuilder
+import org.apache.kafka.streams.scala.kstream.{KStream, KTable}
+import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
+
+case class Instrument(isin: String, currency: String)
+case class Tick(instrument: Instrument, timestamp: Instant, price: Double)
+case class RefData(instrument: Instrument, name: String, `type`: String)
+case class TickWithRefData(tick: Tick, refData: RefData)
+
+implicit val avroSerdeConfig: AvroSerdeConfig = AvroSerdeConfig(Seq("http://localhost:8081"))
+
+val builder = new StreamsBuilder()
+
+val ticks: KStream[Instrument, Tick] = builder.stream("ticks")
+val refs: KTable[Instrument, RefData] = builder.table("refs")
+
+val ticksWithRef = ticks.join(refs)((tick, ref) => TickWithRefData(tick, ref))
+ticksWithRef.to("ticks-with-ref")
+
+val props = new Properties()
+props.put(StreamsConfig.APPLICATION_ID_CONFIG, "ticks-ref-joiner")
+props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
+
+val streams = new KafkaStreams(builder.build(), props)
+sys.addShutdownHook {
+  streams.close()
+}
+streams.start()
+```
 
 ## Special Credits
 

@@ -46,22 +46,23 @@ lazy val benchmarks = (project in file("benchmarks"))
 
 lazy val docs = (project in file("mdoc"))
   .settings(
-    libraryDependencies ++= Seq(libCoursier),
+    libraryDependencies ++= Seq(libCoursier, libAkkaStreamsKafka, libKafkaStreams),
     mdoc                 := run.in(Compile).evaluated,
     mdocOut              := (ThisBuild / baseDirectory).value,
     publish / skip       := true,
     buildInfoKeys        := Seq[BuildInfoKey](version),
     buildInfoPackage     := "com.streese.registravka4s.build.info"
   )
-  .dependsOn(core, akka)
+  .dependsOn(core, akka, streams)
   .enablePlugins(BuildInfoPlugin, MdocPlugin)
 
 lazy val examples = (project in file("examples"))
   .settings(
-    name           := "registravka4s-examples",
-    publish / skip := true
+    name                 := "registravka4s-examples",
+    libraryDependencies ++= Seq(libAkkaStreamsKafka, libKafkaStreams),
+    publish / skip       := true
   )
-  .dependsOn(core, akka)
+  .dependsOn(core, akka, streams)
 
 // Dependencies
 
