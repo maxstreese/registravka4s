@@ -40,5 +40,6 @@ jobs:
     - name: 'Push Documentation Changes And Tag'
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
+        branch: 'master'
         commit_message: 'Update documentation for release ${{ github.event.inputs.version }}'
         tagging_message: 'v${{ github.event.inputs.version }}'
