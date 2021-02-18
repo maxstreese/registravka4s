@@ -10,7 +10,7 @@ Global / excludeLintKeys ++= Set(pomIncludeRepository, publishMavenStyle)
 // Project Definitions
 
 lazy val root = (project in file("."))
-  .aggregate(core, akka, streams, benchmarks, docs, examples)
+  .aggregate(core, akka, kafka, streams, benchmarks, docs, examples)
   .settings(
     name           := "registravka4s",
     publish / skip := true
@@ -26,6 +26,13 @@ lazy val akka = (project in file("akka"))
   .settings(
     name                 := "registravka4s-akka",
     libraryDependencies ++= Seq(libAkkaStreamsKafka)
+  )
+  .dependsOn(core)
+
+lazy val kafka = (project in file("kafka"))
+  .settings(
+    name                 := "registravka4s-kafka",
+    libraryDependencies ++= Seq(libKafkaStreams)
   )
   .dependsOn(core)
 
@@ -53,7 +60,7 @@ lazy val docs = (project in file("mdoc"))
     buildInfoKeys        := Seq[BuildInfoKey](version),
     buildInfoPackage     := "com.streese.registravka4s.build.info"
   )
-  .dependsOn(core, akka, streams)
+  .dependsOn(core, akka, kafka, streams)
   .enablePlugins(BuildInfoPlugin, MdocPlugin)
 
 lazy val examples = (project in file("examples"))
@@ -61,7 +68,7 @@ lazy val examples = (project in file("examples"))
     name           := "registravka4s-examples",
     publish / skip := true
   )
-  .dependsOn(core, akka, streams)
+  .dependsOn(core, akka, kafka, streams)
 
 // Dependencies
 

@@ -42,15 +42,14 @@ Finally two notes about all of this:
 lazy val registravka4sVersion = "0.2.0"
 
 libraryDependencies ++= (
-  "com.streese.registravka4s" %% "registravka4s-core"    % registravka4sVersion,
   "com.streese.registravka4s" %% "registravka4s-akka"    % registravka4sVersion,
+  "com.streese.registravka4s" %% "registravka4s-kafka"   % registravka4sVersion,
   "com.streese.registravka4s" %% "registravka4s-streams" % registravka4sVersion
 )
 ```
 
-Please note that the only required dependency for any project from the above list is `core`. All other dependencies
-may be added depending on the library/framework you use to interact with Kafka (e.g. `akka`). As of writing this,
-RegistrAvKa4s supports Akka and Kafka Streams.
+Please note that of all the libraries listed above you usually only require one - the one which wires up the
+library/framework you use to interact with Kafka.
 
 ## Examples
 
@@ -95,6 +94,36 @@ val done = Source(1 to 10)
 
 implicit val executionContext = actorSystem.dispatcher
 done.onComplete(_ => actorSystem.terminate())
+```
+
+### Kafka Producer
+
+You may want to do something like the above but with the core Kafka client library instead. This may for example be
+useful in some Ammonite scripting context where you do not want to concern yourself with e.g. running an actor system
+like above.
+
+```scala
+import java.time.Instant
+
+import com.streese.registravka4s.GenericRecordFormat.Implicits._
+import com.streese.registravka4s.GenericSerde.Implicits._
+import com.streese.registravka4s.streams.ImplicitConversions._
+import com.streese.registravka4s.kafka.KafkaProducer
+import com.streese.registravka4s.{AvroSerdeConfig, GenericRecordFormat, GenericSerde}
+import com.streese.registravka4s.{KeySerializer, ValueSerializer}
+import org.apache.kafka.clients.producer.ProducerRecord
+
+case class Instrument(isin: String, currency: String)
+case class Tick(instrument: Instrument, timestamp: Instant, price: Double)
+
+implicit val avroSerdeConfig: AvroSerdeConfig = AvroSerdeConfig(Seq("http://localhost:8081"))
+
+val topic = "ticks"
+val instrument = Instrument("DE0008469008", "PTX")
+
+val producer = KafkaProducer[Instrument, Tick]("bootstrap.servers" -> "localhost:9092")
+producer.send(new ProducerRecord(topic, instrument, Tick(instrument, Instant.now(), 1.0)))
+producer.close()
 ```
 
 ### Kafka Streams Processor
