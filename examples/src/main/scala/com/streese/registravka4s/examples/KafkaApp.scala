@@ -5,7 +5,6 @@ import java.time.Instant
 import com.streese.registravka4s.examples.model._
 import com.streese.registravka4s.kafka.KafkaProducer
 import com.streese.registravka4s.{AvroSerdeConfig, GenericRecordFormat, GenericSerde}
-import com.streese.registravka4s.{KeySerializer, ValueSerializer}
 import org.apache.kafka.clients.producer.ProducerRecord
 
 object KafkaApp extends App with GenericRecordFormat with GenericSerde {
