@@ -73,7 +73,7 @@ lazy val examples = (project in file("examples"))
 // Dependencies
 
 lazy val libAkkaStreamsKafka       = "com.typesafe.akka"     %% "akka-stream-kafka"        % "2.1.0"
-lazy val libAvro4s                 = "com.sksamuel.avro4s"   %% "avro4s-core"              % "4.0.8"
+lazy val libAvro4s                 = "com.sksamuel.avro4s"   %% "avro4s-core"              % "4.0.9"
 lazy val libCoursier               = "io.get-coursier"       %% "coursier"                 % "2.0.16"
 lazy val libKafka                  = "org.apache.kafka"      %% "kafka"                    % "2.8.0"
 lazy val libKafkaStreams           = "org.apache.kafka"      %% "kafka-streams-scala"      % "2.8.0"
