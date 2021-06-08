@@ -77,7 +77,7 @@ lazy val libAvro4s                 = "com.sksamuel.avro4s"   %% "avro4s-core"   
 lazy val libCoursier               = "io.get-coursier"       %% "coursier"                 % "2.0.16"
 lazy val libKafka                  = "org.apache.kafka"      %% "kafka"                    % "2.8.0"
 lazy val libKafkaStreams           = "org.apache.kafka"      %% "kafka-streams-scala"      % "2.8.0"
-lazy val libKafkaStreamsAvroSerde  = "io.confluent"          %  "kafka-streams-avro-serde" % "6.1.1"
+lazy val libKafkaStreamsAvroSerde  = "io.confluent"          %  "kafka-streams-avro-serde" % "6.2.0"
 lazy val libPureConfig             = "com.github.pureconfig" %% "pureconfig"               % "0.15.0"
 
 // Specifics For Publishing
