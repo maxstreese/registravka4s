@@ -1,9 +1,8 @@
 // General
 
-ThisBuild / organization      := "com.streese.registravka4s"
-ThisBuild / scalaVersion      := "2.13.6"
-ThisBuild / version           := "0.0.0-SNAPSHOT"
-ThisBuild / resolvers        ++= Seq("Confluent" at "https://packages.confluent.io/maven/")
+ThisBuild / organization := "com.streese.registravka4s"
+ThisBuild / scalaVersion := "2.13.6"
+ThisBuild / resolvers    ++= Seq("Confluent" at "https://packages.confluent.io/maven/")
 
 Global / excludeLintKeys ++= Set(pomIncludeRepository, publishMavenStyle)
 
@@ -82,35 +81,14 @@ lazy val libPureConfig             = "com.github.pureconfig" %% "pureconfig"    
 
 // Specifics For Publishing
 
-ThisBuild / organizationName     := "Streese"
-ThisBuild / organizationHomepage := Some(url("https://streese.com/"))
-ThisBuild / description          := "RegistrAvKa4s - (Schema-)Registry, Avro and Kafka for Scala"
-ThisBuild / licenses             := List("Apache License 2.0" -> new URL("https://www.apache.org/licenses/LICENSE-2.0"))
-ThisBuild / homepage             := Some(url("https://github.com/maxstreese/registravka4s"))
-
-ThisBuild / scmInfo := Some(
-  ScmInfo(
-    browseUrl  = url("https://github.com/maxstreese/registravka4s"),
-    connection = "scm:git@github.com:maxstreese/registravka4s.git"
-  )
-)
-
-ThisBuild / developers := List(
+ThisBuild / description := "RegistrAvKa4s - (Schema-)Registry, Avro and Kafka for Scala"
+ThisBuild / licenses    := List("Apache License 2.0" -> new URL("https://www.apache.org/licenses/LICENSE-2.0"))
+ThisBuild / homepage    := Some(url("https://github.com/maxstreese/registravka4s"))
+ThisBuild / developers  := List(
   Developer(
     id    = "max.streese",
     name  = "Max Streese",
     email = "max@streese.com",
     url   = url("https://max.streese.com/")
   )
-)
-
-ThisBuild / pomIncludeRepository := { _ => false }
-ThisBuild / publishTo            := sonatypePublishToBundle.value
-ThisBuild / publishMavenStyle    := true
-
-ThisBuild / credentials += Credentials(
-  realm    = "Sonatype Nexus Repository Manager",
-  host     = "oss.sonatype.org",
-  userName = sys.env.getOrElse("OSSRH_USER", ""),
-  passwd   = sys.env.getOrElse("OSSRH_PASSWORD", "")
 )
