@@ -1,7 +1,7 @@
 // General
 
 ThisBuild / organization      := "com.streese.registravka4s"
-ThisBuild / scalaVersion      := "2.13.5"
+ThisBuild / scalaVersion      := "2.13.6"
 ThisBuild / version           := "0.0.0-SNAPSHOT"
 ThisBuild / resolvers        ++= Seq("Confluent" at "https://packages.confluent.io/maven/")
 
