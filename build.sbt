@@ -54,7 +54,7 @@ lazy val benchmarks = (project in file("benchmarks"))
 lazy val docs = (project in file("mdoc"))
   .settings(
     libraryDependencies ++= Seq(libCoursier),
-    mdoc                 := run.in(Compile).evaluated,
+    mdoc                 := (Compile / run).evaluated,
     mdocOut              := (ThisBuild / baseDirectory).value,
     publish / skip       := true,
     buildInfoKeys        := Seq[BuildInfoKey](version),
