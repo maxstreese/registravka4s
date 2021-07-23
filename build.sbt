@@ -4,8 +4,6 @@ ThisBuild / organization := "com.streese.registravka4s"
 ThisBuild / scalaVersion := "2.13.6"
 ThisBuild / resolvers    ++= Seq("Confluent" at "https://packages.confluent.io/maven/")
 
-Global / excludeLintKeys ++= Set(pomIncludeRepository, publishMavenStyle)
-
 // Project Definitions
 
 lazy val root = (project in file("."))
@@ -52,15 +50,12 @@ lazy val benchmarks = (project in file("benchmarks"))
 
 lazy val docs = (project in file("mdoc"))
   .settings(
-    libraryDependencies ++= Seq(libCoursier),
-    mdoc                 := (Compile / run).evaluated,
-    mdocOut              := (ThisBuild / baseDirectory).value,
-    publish / skip       := true,
-    buildInfoKeys        := Seq[BuildInfoKey](version),
-    buildInfoPackage     := "com.streese.registravka4s.build.info"
+    name           := "registravka-docs",
+    mdocOut        := (ThisBuild / baseDirectory).value,
+    publish / skip := true
   )
   .dependsOn(core, akka, kafka, streams)
-  .enablePlugins(BuildInfoPlugin, MdocPlugin)
+  .enablePlugins(MdocPlugin)
 
 lazy val examples = (project in file("examples"))
   .settings(
@@ -71,13 +66,12 @@ lazy val examples = (project in file("examples"))
 
 // Dependencies
 
-lazy val libAkkaStreamsKafka       = "com.typesafe.akka"     %% "akka-stream-kafka"        % "2.1.0"
-lazy val libAvro4s                 = "com.sksamuel.avro4s"   %% "avro4s-core"              % "4.0.10"
-lazy val libCoursier               = "io.get-coursier"       %% "coursier"                 % "2.0.16"
-lazy val libKafka                  = "org.apache.kafka"      %% "kafka"                    % "2.8.0"
-lazy val libKafkaStreams           = "org.apache.kafka"      %% "kafka-streams-scala"      % "2.8.0"
-lazy val libKafkaStreamsAvroSerde  = "io.confluent"          %  "kafka-streams-avro-serde" % "6.2.0"
-lazy val libPureConfig             = "com.github.pureconfig" %% "pureconfig"               % "0.16.0"
+lazy val libAkkaStreamsKafka      = "com.typesafe.akka"     %% "akka-stream-kafka"        % "2.1.0"
+lazy val libAvro4s                = "com.sksamuel.avro4s"   %% "avro4s-core"              % "4.0.10"
+lazy val libKafka                 = "org.apache.kafka"      %% "kafka"                    % "2.8.0"
+lazy val libKafkaStreams          = "org.apache.kafka"      %% "kafka-streams-scala"      % "2.8.0"
+lazy val libKafkaStreamsAvroSerde = "io.confluent"          %  "kafka-streams-avro-serde" % "6.2.0"
+lazy val libPureConfig            = "com.github.pureconfig" %% "pureconfig"               % "0.16.0"
 
 // Specifics For Publishing
 
