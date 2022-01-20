@@ -107,9 +107,8 @@ import java.time.Instant
 
 import com.streese.registravka4s.GenericRecordFormat.Implicits._
 import com.streese.registravka4s.GenericSerde.Implicits._
-import com.streese.registravka4s.streams.ImplicitConversions._
 import com.streese.registravka4s.kafka.KafkaProducer
-import com.streese.registravka4s.{AvroSerdeConfig, GenericRecordFormat, GenericSerde}
+import com.streese.registravka4s.AvroSerdeConfig
 import org.apache.kafka.clients.producer.ProducerRecord
 
 case class Instrument(isin: String, currency: String)
@@ -137,7 +136,7 @@ import java.util.Properties
 import com.streese.registravka4s.GenericRecordFormat.Implicits._
 import com.streese.registravka4s.GenericSerde.Implicits._
 import com.streese.registravka4s.streams.ImplicitConversions._
-import com.streese.registravka4s.{AvroSerdeConfig, GenericRecordFormat, GenericSerde}
+import com.streese.registravka4s.AvroSerdeConfig
 import org.apache.kafka.streams.scala.StreamsBuilder
 import org.apache.kafka.streams.scala.kstream.{KStream, KTable}
 import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
