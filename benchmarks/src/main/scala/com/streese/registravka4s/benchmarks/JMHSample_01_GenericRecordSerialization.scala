@@ -1,10 +1,13 @@
 package com.streese.registravka4s.benchmarks
 
-import com.streese.registravka4s.{AvroSerdeConfig, WrappedGenericRecord}
+import com.streese.registravka4s.AvroSerdeConfig
 import com.streese.registravka4s.GenericRecordFormat
 import com.streese.registravka4s.GenericSerde
+import com.streese.registravka4s.WrappedGenericRecord
 import com.streese.registravka4s.benchmarks.model._
-import org.openjdk.jmh.annotations.{Benchmark, Scope, State}
+import org.openjdk.jmh.annotations.Benchmark
+import org.openjdk.jmh.annotations.Scope
+import org.openjdk.jmh.annotations.State
 
 object JMHSample_01_GenericRecordSerialization {
 

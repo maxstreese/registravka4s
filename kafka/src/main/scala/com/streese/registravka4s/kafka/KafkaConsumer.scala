@@ -1,10 +1,9 @@
 package com.streese.registravka4s.kafka
 
-import java.util.Properties
-
 import com.streese.registravka4s._
 import org.apache.kafka.clients.consumer.{KafkaConsumer => JKafkaConsumer}
 
+import java.util.Properties
 import scala.jdk.CollectionConverters._
 
 object KafkaConsumer {

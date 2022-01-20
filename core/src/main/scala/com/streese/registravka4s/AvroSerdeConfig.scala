@@ -1,9 +1,10 @@
 package com.streese.registravka4s
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
 import io.confluent.kafka.serializers.{AbstractKafkaSchemaSerDeConfig => SerDeConf}
+import pureconfig.ConfigSource
 import pureconfig.generic.auto._
-import pureconfig.{ConfigSource, ConfigReader}
 
 import scala.util.Try
 

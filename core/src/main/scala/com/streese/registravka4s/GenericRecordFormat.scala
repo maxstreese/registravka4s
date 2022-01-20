@@ -1,10 +1,12 @@
 package com.streese.registravka4s
 
-import com.sksamuel.avro4s.{Encoder, Decoder, RecordFormat, SchemaFor}
+import com.sksamuel.avro4s.Decoder
+import com.sksamuel.avro4s.Encoder
+import com.sksamuel.avro4s.RecordFormat
 
 trait GenericRecordFormat {
 
-  implicit def avroRecordFormatGeneric[T: Encoder: Decoder: SchemaFor]: RecordFormat[T] = RecordFormat[T]
+  implicit def avroRecordFormatGeneric[T: Encoder: Decoder]: RecordFormat[T] = RecordFormat[T]
 
 }
 
