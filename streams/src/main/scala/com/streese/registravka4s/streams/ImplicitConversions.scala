@@ -1,18 +1,17 @@
 package com.streese.registravka4s.streams
 
-import com.streese.registravka4s.{KeySerde, ValueSerde}
+import com.streese.registravka4s.KeySerde
+import com.streese.registravka4s.ValueSerde
 import org.apache.kafka.streams.KeyValue
-import org.apache.kafka.streams.kstream.{
-  KStream => KStreamJ,
-  KGroupedStream => KGroupedStreamJ,
-  TimeWindowedKStream => TimeWindowedKStreamJ,
-  SessionWindowedKStream => SessionWindowedKStreamJ,
-  CogroupedKStream => CogroupedKStreamJ,
-  TimeWindowedCogroupedKStream => TimeWindowedCogroupedKStreamJ,
-  SessionWindowedCogroupedKStream => SessionWindowedCogroupedKStreamJ,
-  KTable => KTableJ,
-  KGroupedTable => KGroupedTableJ
-}
+import org.apache.kafka.streams.kstream.{CogroupedKStream => CogroupedKStreamJ}
+import org.apache.kafka.streams.kstream.{KGroupedStream => KGroupedStreamJ}
+import org.apache.kafka.streams.kstream.{KGroupedTable => KGroupedTableJ}
+import org.apache.kafka.streams.kstream.{KStream => KStreamJ}
+import org.apache.kafka.streams.kstream.{KTable => KTableJ}
+import org.apache.kafka.streams.kstream.{SessionWindowedCogroupedKStream => SessionWindowedCogroupedKStreamJ}
+import org.apache.kafka.streams.kstream.{SessionWindowedKStream => SessionWindowedKStreamJ}
+import org.apache.kafka.streams.kstream.{TimeWindowedCogroupedKStream => TimeWindowedCogroupedKStreamJ}
+import org.apache.kafka.streams.kstream.{TimeWindowedKStream => TimeWindowedKStreamJ}
 import org.apache.kafka.streams.processor.StateStore
 import org.apache.kafka.streams.scala.kstream._
 
@@ -21,7 +20,7 @@ import org.apache.kafka.streams.scala.kstream._
  * every occurence of an implicit [[org.apache.kafka.common.serialization.Serde]] is replaced with either a
  * [[com.streese.registravka4s.KeySerde]] or a [[com.streese.registravka4s.ValueSerde]] depending on whether the
  * type is used for a key or for a value.
- * 
+ *
  * Original documentation:
  * Implicit conversions between the Scala wrapper objects and the underlying Java
  * objects.

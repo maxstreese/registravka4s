@@ -1,7 +1,10 @@
 package com.streese.registravka4s.akka
 
 import akka.kafka.{ConsumerSettings => AkkaConsumerSettings}
-import com.streese.registravka4s.{KeySerde, KeyDeserializer, ValueSerde, ValueDeserializer}
+import com.streese.registravka4s.KeyDeserializer
+import com.streese.registravka4s.KeySerde
+import com.streese.registravka4s.ValueDeserializer
+import com.streese.registravka4s.ValueSerde
 import com.typesafe.config.Config
 
 object ConsumerSettings {

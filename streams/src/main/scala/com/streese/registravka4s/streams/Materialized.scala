@@ -1,17 +1,22 @@
 package com.streese.registravka4s.streams
 
-import com.streese.registravka4s.{KeySerde, ValueSerde}
+import com.streese.registravka4s.KeySerde
+import com.streese.registravka4s.ValueSerde
 import org.apache.kafka.streams.kstream.{Materialized => MaterializedJ}
 import org.apache.kafka.streams.processor.StateStore
-import org.apache.kafka.streams.scala.{ByteArrayKeyValueStore, ByteArraySessionStore, ByteArrayWindowStore}
-import org.apache.kafka.streams.state.{KeyValueBytesStoreSupplier, SessionBytesStoreSupplier, WindowBytesStoreSupplier}
+import org.apache.kafka.streams.scala.ByteArrayKeyValueStore
+import org.apache.kafka.streams.scala.ByteArraySessionStore
+import org.apache.kafka.streams.scala.ByteArrayWindowStore
+import org.apache.kafka.streams.state.KeyValueBytesStoreSupplier
+import org.apache.kafka.streams.state.SessionBytesStoreSupplier
+import org.apache.kafka.streams.state.WindowBytesStoreSupplier
 
 /**
   * This is essentially just a copy of [[org.apache.kafka.streams.scala.kstream.Materialized]] with the difference
   * that every occurence of an implicit [[org.apache.kafka.common.serialization.Serde]] is replaced with either a
   * [[com.streese.registravka4s.KeySerde]] or a [[com.streese.registravka4s.ValueSerde]] depending on whether the
   * type is used for a key or for a value.
-  * 
+  *
   * Additionally the `with` method was removed as this should never be called directly by client code and is hence
   * not necessary to be adjusted with respect to the serdes.
   */

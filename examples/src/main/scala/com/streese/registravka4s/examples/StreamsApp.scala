@@ -1,13 +1,17 @@
 package com.streese.registravka4s.examples
 
-import java.util.Properties
-
+import com.streese.registravka4s.AvroSerdeConfig
+import com.streese.registravka4s.GenericRecordFormat
+import com.streese.registravka4s.GenericSerde
 import com.streese.registravka4s.examples.model._
 import com.streese.registravka4s.streams.ImplicitConversions._
-import com.streese.registravka4s.{AvroSerdeConfig, GenericRecordFormat, GenericSerde}
-import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
+import org.apache.kafka.streams.KafkaStreams
+import org.apache.kafka.streams.StreamsConfig
 import org.apache.kafka.streams.scala.StreamsBuilder
-import org.apache.kafka.streams.scala.kstream.{KStream, KTable}
+import org.apache.kafka.streams.scala.kstream.KStream
+import org.apache.kafka.streams.scala.kstream.KTable
+
+import java.util.Properties
 
 object StreamsApp extends App with GenericRecordFormat with GenericSerde {
 

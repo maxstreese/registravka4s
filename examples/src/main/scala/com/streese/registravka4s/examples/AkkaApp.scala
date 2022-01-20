@@ -1,14 +1,16 @@
 package com.streese.registravka4s.examples
 
-import java.time.Instant
-
 import akka.actor.ActorSystem
 import akka.kafka.scaladsl.Producer
 import akka.stream.scaladsl.Source
+import com.streese.registravka4s.AvroSerdeConfig
+import com.streese.registravka4s.GenericRecordFormat
+import com.streese.registravka4s.GenericSerde
 import com.streese.registravka4s.akka.ProducerSettings
 import com.streese.registravka4s.examples.model._
-import com.streese.registravka4s.{AvroSerdeConfig, GenericRecordFormat, GenericSerde}
 import org.apache.kafka.clients.producer.ProducerRecord
+
+import java.time.Instant
 
 object AkkaApp extends App with GenericRecordFormat with GenericSerde {
 

@@ -1,9 +1,12 @@
 package com.streese.registravka4s
 
 import com.sksamuel.avro4s.RecordFormat
-import org.apache.kafka.common.serialization.{Serde => KSerde, Serdes => KSerdes, Serializer, Deserializer}
-import io.confluent.kafka.streams.serdes.avro.GenericAvroSerde
 import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient
+import io.confluent.kafka.streams.serdes.avro.GenericAvroSerde
+import org.apache.kafka.common.serialization.Deserializer
+import org.apache.kafka.common.serialization.Serializer
+import org.apache.kafka.common.serialization.{Serde => KSerde}
+import org.apache.kafka.common.serialization.{Serdes => KSerdes}
 
 import scala.jdk.CollectionConverters._
 
@@ -19,7 +22,7 @@ trait GenericSerde {
     implicit
     config: AvroSerdeConfig,
     recordFormat: RecordFormat[T]
-  ): ValueSerde[T] = kafkaSerde(genericAvroSerde(config, forKey = false), recordFormat).asInstanceOf[ValueSerde[T]] 
+  ): ValueSerde[T] = kafkaSerde(genericAvroSerde(config, forKey = false), recordFormat).asInstanceOf[ValueSerde[T]]
 
   private[registravka4s] def kafkaSerde[T >: Null](
     genericAvroSerde: GenericAvroSerde,

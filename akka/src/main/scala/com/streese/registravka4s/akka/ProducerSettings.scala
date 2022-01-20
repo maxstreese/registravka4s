@@ -1,7 +1,10 @@
 package com.streese.registravka4s.akka
 
 import akka.kafka.{ProducerSettings => AkkaProducerSettings}
-import com.streese.registravka4s.{KeySerde, KeySerializer, ValueSerde, ValueSerializer}
+import com.streese.registravka4s.KeySerde
+import com.streese.registravka4s.KeySerializer
+import com.streese.registravka4s.ValueSerde
+import com.streese.registravka4s.ValueSerializer
 import com.typesafe.config.Config
 
 object ProducerSettings {

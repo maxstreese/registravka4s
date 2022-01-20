@@ -1,6 +1,8 @@
 package com.streese
 
-import org.apache.kafka.common.serialization.{Serde, Serializer, Deserializer}
+import org.apache.kafka.common.serialization.Deserializer
+import org.apache.kafka.common.serialization.Serde
+import org.apache.kafka.common.serialization.Serializer
 
 package object registravka4s {
 
