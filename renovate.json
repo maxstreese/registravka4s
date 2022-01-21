@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base", ":disableDependencyDashboard"],
   "prHourlyLimit": 0,
   "reviewers": ["maxstreese"],
   "packageRules": [
