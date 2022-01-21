@@ -25,8 +25,8 @@ jobs:
     - name: 'Setup Java'
       uses: 'actions/setup-java@v2'
       with:
-        distribution: 'adopt-hotspot'
-        java-version: 11
+        distribution: 'temurin'
+        java-version: 17
     - name: 'Cache SBT And Dependencies'
       uses: 'actions/cache@v2'
       with:
