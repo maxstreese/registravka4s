@@ -1,7 +1,7 @@
 import dependencies._
 
 ThisBuild / organization  := "com.streese.registravka4s"
-ThisBuild / scalaVersion  := "2.13.8"
+ThisBuild / scalaVersion  := "2.13.10"
 ThisBuild / resolvers    ++= Seq("Confluent" at "https://packages.confluent.io/maven/")
 
 ThisBuild / scalacOptions ++= List(

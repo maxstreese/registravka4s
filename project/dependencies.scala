@@ -4,12 +4,12 @@ import Keys._
 object dependencies {
 
   private object versions {
-    val akkaStreamsKafka      = "2.1.1"
-    val avro4s                = "4.0.12"
-    val kafka                 = "3.0.0"
-    val kafkaStreams          = "3.0.0"
-    val kafkaStreamsAvroSerde = "7.0.1"
-    val pureConfig            = "0.17.1"
+    val akkaStreamsKafka      = "4.0.0"
+    val avro4s                = "4.1.0"
+    val kafka                 = "3.3.1"
+    val kafkaStreams          = "3.3.1"
+    val kafkaStreamsAvroSerde = "7.3.1"
+    val pureConfig            = "0.17.2"
   }
 
   val coreDeps: Seq[ModuleID] = Seq(
