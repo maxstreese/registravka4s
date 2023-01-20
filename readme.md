@@ -1,6 +1,6 @@
 # RegistrAvKa4s
 
-[<img src="https://img.shields.io/github/workflow/status/maxstreese/registravka4s/Build/main?style=flat-square&logo=github"/>](https://github.com/maxstreese/registravka4s/actions?query=workflow%3ABuild+branch%3Amain)
+[<img src="https://img.shields.io/github/actions/workflow/status/maxstreese/registravka4s/build.yml?branch=main"/>](https://github.com/maxstreese/registravka4s/actions?query=workflow%3ABuild+branch%3Amain)
 [<img src="https://img.shields.io/maven-central/v/com.streese.registravka4s/registravka4s-core_2.13?style=flat-square&logo=apache%20maven"/>](https://search.maven.org/search?q=g:com.streese.registravka4s)
 
 RegistrAvKa4s allows you to produce/consume Confluent Schema Registry compatible Apache Avro records to/from
@@ -39,7 +39,7 @@ Finally two notes about all of this:
 ## Dependencies For A Project In SBT Style
 
 ```scala
-lazy val registravka4sVersion = "0.4.0"
+lazy val registravka4sVersion = "0.6.0"
 
 libraryDependencies ++= (
   "com.streese.registravka4s" %% "registravka4s-akka"    % registravka4sVersion,
