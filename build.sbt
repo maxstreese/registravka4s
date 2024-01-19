@@ -64,8 +64,9 @@ lazy val docs = (project in file("mdoc"))
 
 lazy val examples = (project in file("examples"))
   .settings(
-    name           := "registravka4s-examples",
-    publish / skip := true
+    name                 := "registravka4s-examples",
+    libraryDependencies ++= examplesDeps,
+    publish / skip       := true
   )
   .dependsOn(core, akka, kafka, streams)
 
